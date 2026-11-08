@@ -1,0 +1,2 @@
+{"event": "dry_run", "images": 6, "ts": "2026-11-08T15:55:38+00:00"}
+{"event": "live_refused_stale", "reason": "run dated 2026-11-06, today 2026-11-08; no --allow-stale", "ts": "2026-11-08T15:56:00+00:00"}
