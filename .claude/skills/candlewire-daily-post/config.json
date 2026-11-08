@@ -1,0 +1,13 @@
+{
+ "ig_user_id": "17841457733478739",
+ "ig_username": "candlewire_",
+ "api_base": "https://graph.facebook.com/v27.0",
+ "approval_mode": "manual",
+ "timezone_reference": "America/New_York",
+ "slots_et": {
+  "premarket": "run 08:45, publish by 09:10",
+  "midday": "run 12:45, publish by 13:10",
+  "close": "run 16:10, publish by 16:40"
+ },
+ "media_repo": "<owner>/candlewire"
+}
