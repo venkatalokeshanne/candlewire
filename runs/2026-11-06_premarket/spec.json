@@ -1,0 +1,245 @@
+{
+ "slot": "premarket",
+ "snapshot": "9:03 AM ET Fri Nov 6 2026",
+ "caption": "Nasdaq-100 futures +1.5% before the bell as chips bounce and jobs beat forecasts (165,000 vs about 59,000 expected).\n\nDow futures were about -1% at 8:58 AM ET, and traders priced a >65% chance of a December Fed hike (Reuters, CME FedWatch).\n\nSwipe: futures board, jobs numbers, pre-market movers, what to watch at 9:30.\n\nSend this to a friend who trades. Midday update around 1 PM ET.\n\nPre-market prices are thin and can swing. Sources on the last slide. Educational content only. Not financial advice. Trading involves risk of loss.\n\n#premarket #stockmarket #nasdaq #jobsreport #tradingeducation",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "FRIDAY, NOV 6, 2026 · 9:03 AM ET · BEFORE THE OPEN",
+   "big": "+1.5%",
+   "bigcol": "green",
+   "bigsub": "NASDAQ-100 FUTURES, 8:58 AM ET",
+   "headline": [
+    [
+     "CHIPS BOUNCE, ",
+     "white"
+    ],
+    [
+     "DOW FUTURES SLIP",
+     "red"
+    ],
+    [
+     " AS JOBS BEAT FORECASTS",
+     "amber"
+    ]
+   ],
+   "seed": 5,
+   "gp": 0.45,
+   "bigsize": 230
+  },
+  {
+   "type": "board",
+   "kicker": "9:03 AM ET · 27 MINUTES TO THE OPEN",
+   "parts": [
+    [
+     "BEFORE ",
+     "white"
+    ],
+    [
+     "THE BELL",
+     "amber"
+    ]
+   ],
+   "footer": "Sources: CNBC, Reuters, StockTitan real-time data (Nov 6)",
+   "rows": [
+    [
+     "NASDAQ-100 FUTURES",
+     "+1.5%",
+     "As of 8:58 AM ET (CNBC)",
+     "green",
+     1.0
+    ],
+    [
+     "DOW FUTURES",
+     "−1.0%",
+     "As of 8:58 AM ET (CNBC)",
+     "red",
+     0.66
+    ],
+    [
+     "EIGHT BIG CHIP STOCKS",
+     "≈ 40%",
+     "of Thursday's loss won back, on average, 9:02 AM",
+     "amber",
+     null
+    ],
+    [
+     "DECEMBER FED HIKE ODDS",
+     "> 65%",
+     "CME FedWatch, cited by Reuters at 6:52 AM",
+     "amber",
+     null
+    ]
+   ],
+   "rowh": 170,
+   "valsize": 84
+  },
+  {
+   "type": "bignum",
+   "kicker": "8:30 AM ET · OCTOBER JOBS REPORT",
+   "parts": [
+    [
+     "A ",
+     "white"
+    ],
+    [
+     "HOT",
+     "amber"
+    ],
+    [
+     " JOBS REPORT",
+     "white"
+    ]
+   ],
+   "footer": "Sources: Bureau of Labor Statistics, CNBC via StockTitan",
+   "big": "165,000",
+   "bigcol": "amber",
+   "bigsub": "JOBS ADDED IN OCTOBER",
+   "bullets": [
+    "Economists polled by Dow Jones expected about 59,000.",
+    "Unemployment 4.1% vs 4.2% expected.",
+    "Treasury yields rose, which held back the gains in stock futures (CNBC)."
+   ]
+  },
+  {
+   "type": "movers",
+   "kicker": "PRE-MARKET · FIRST TO REACT TO EARNINGS",
+   "parts": [
+    [
+     "PRE-MARKET ",
+     "white"
+    ],
+    [
+     "MOVERS",
+     "amber"
+    ]
+   ],
+   "footer": "Pre-market prices are thin and can swing. Source: StockTitan real-time data, company releases",
+   "rows": [
+    [
+     "DKNG",
+     -27.08,
+     "Wider-than-expected loss, CNBC says",
+     "9:02 AM ET"
+    ],
+    [
+     "WULF",
+     12.1,
+     "~83% of Q3 revenue from leasing data-center capacity",
+     "9:00 AM ET"
+    ],
+    [
+     "FLY",
+     12.69,
+     "$1.3B+ rocket-engine deal with AST SpaceMobile",
+     "8:01 AM ET"
+    ],
+    [
+     "UA",
+     -9.86,
+     "Expects smaller gross-margin gain this fiscal year",
+     "7:54 AM ET"
+    ],
+    [
+     "CHTR",
+     -6.25,
+     "Lost 233,000 internet customers in Q3",
+     "7:51 AM ET"
+    ],
+    [
+     "MRNA",
+     3.67,
+     "Raised its 2026 revenue growth forecast",
+     "8:01 AM ET"
+    ]
+   ]
+  },
+  {
+   "type": "cards",
+   "kicker": "WHAT TO WATCH AT 9:30",
+   "parts": [
+    [
+     "THREE THINGS ",
+     "white"
+    ],
+    [
+     "AT THE OPEN",
+     "amber"
+    ]
+   ],
+   "footer": "Sources: CNBC, Reuters, StockTitan",
+   "cards": [
+    [
+     "1",
+     "Can chips hold the bounce?",
+     "Thursday: Nasdaq Composite −5.5%, S&P 500 −4.4%, their worst days since April 2025."
+    ],
+    [
+     "2",
+     "Rates",
+     "Hot jobs data and higher yields. Traders priced a >65% chance of a December Fed hike (Reuters)."
+    ],
+    [
+     "3",
+     "Washington",
+     "Trump said he fully backs the AI build-out, after Democrats won races campaigning against data centers (CNBC)."
+    ]
+   ]
+  },
+  {
+   "type": "cta",
+   "sources": [
+    "CNBC via StockTitan live coverage",
+    "BLS; CNBC via StockTitan",
+    "StockTitan real-time data",
+    "Reuters citing CME FedWatch"
+   ],
+   "extra": [
+    "NEXT UPDATE",
+    "MIDDAY · ABOUT 1 PM ET"
+   ]
+  }
+ ],
+ "claims": [
+  {
+   "claim": "Nasdaq-100 futures +1.5%, Dow futures -1.0%",
+   "value": "8:58 AM ET",
+   "source": "CNBC via StockTitan live coverage",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-6-2026",
+   "as_of": "9:03 AM ET",
+   "confidence": "medium-high"
+  },
+  {
+   "claim": "October jobs 165,000 vs ~59,000 expected; unemployment 4.1% vs 4.2%",
+   "value": "8:30 AM ET",
+   "source": "BLS; CNBC via StockTitan",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-6-2026",
+   "as_of": "8:30 AM ET",
+   "confidence": "high"
+  },
+  {
+   "claim": "8 big chips won back ~40% of Thursday's loss",
+   "value": "9:02 AM ET",
+   "source": "StockTitan real-time data",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-6-2026",
+   "as_of": "9:02 AM ET",
+   "confidence": "medium (their estimate, 'about')"
+  },
+  {
+   "claim": "December Fed hike odds >65%",
+   "value": "6:52 AM ET",
+   "source": "Reuters citing CME FedWatch",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-6-2026",
+   "as_of": "6:52 AM ET",
+   "confidence": "medium"
+  },
+  {
+   "claim": "DKNG -27.08% pre-market",
+   "value": "9:02 AM ET",
+   "source": "StockTitan real-time data",
+   "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-6-2026",
+   "as_of": "9:02 AM ET",
+   "confidence": "medium-high"
+  }
+ ]
+}
