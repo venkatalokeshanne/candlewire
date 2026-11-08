@@ -92,7 +92,18 @@ def main():
     ap.add_argument("--config", default=str(CONFIG_DEFAULT))
     ap.add_argument("--log", default="publish_log.jsonl")
     ap.add_argument("--live", action="store_true", help="actually publish (default is a dry run)")
+    ap.add_argument("--run", help="run folder like runs/2026-11-09_premarket; its date must be today (US Eastern) or publishing is refused")
+    ap.add_argument("--allow-stale", action="store_true", help="publish even if the run date is not today (needs the user's explicit instruction)")
     a = ap.parse_args()
+    if a.live and not a.allow_stale:
+        import re, datetime
+        from zoneinfo import ZoneInfo
+        m = re.search(r"(\d{4}-\d{2}-\d{2})_(premarket|midday|close)", a.run or "")
+        today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
+        if not m:
+            sys.exit("REFUSED: pass --run runs/<YYYY-MM-DD>_<slot> so the post can be checked for freshness")
+        if m.group(1) != today:
+            sys.exit(f"REFUSED: this run is dated {m.group(1)} but today is {today} (US Eastern). Stale posts are not published. Use --allow-stale only if the user explicitly asks")
 
     if a.upload_dir:
         urls = upload_temp(a.upload_dir)

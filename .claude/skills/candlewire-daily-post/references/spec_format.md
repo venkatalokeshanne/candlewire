@@ -4,3 +4,7 @@ Slide: {t, k (kicker), h (title with markup), src (sources text) or f (full foot
 board: rows ["name|value|sub|color|ratio"]   cards: cards ["n|title|text"]   bignum: big, bc, sub, bullets[]
 movers: rows ["TICK|pct|reason|time"]   movers2: gain/lose ["TICK|name|pct"]   chipbars: rows ["TICK|gain|share"], avg   linechart: pts ["label|value"], note
 Colors: white amber red green cyan slate. Cover gp = share of green tiles (0-1). CTA sources default to the refs used in claims.
+
+New types: stat {t,k,big,bc,label (28 chars max),ctx,src}  versus {t,k,h,L,R as "label|big|sub|color", win L|R, verdict,src}  chain {t,k (must say REPORTED),h,nodes["title|text|color" x3-4],src}.  Any slide: nx = teaser for the next slide.  Top level: story {q,a[]} for the Story poll idea.
+
+Meme types (original mascot): react {t,k,top,bot,mood,src}  approve {t,k,no,yes,src}  ev {t,k,L,R as "label|text|mood",src}. Moods: happy smug panic sad shocked. Top level: format (name from formats.json).

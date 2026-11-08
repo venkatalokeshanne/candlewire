@@ -2,7 +2,7 @@
 """Validate a Candlewire post spec BEFORE rendering. Exit code 1 = fix the problems listed."""
 import json, re, sys
 BANNED = ["guaranteed", "can't lose", "cant lose", "buy now", "sell now", "easy money", "price target",
-          "to the moon", "sure thing", "risk-free", "risk free", "you should buy", "you should sell"]
+          "to the moon", "like if", "double tap", "comment to win", "follow for follow", "tag 3 friends", "giveaway", "sure thing", "risk-free", "risk free", "you should buy", "you should sell"]
 def strings(x):
     if isinstance(x, str): yield x
     elif isinstance(x, dict):
@@ -40,6 +40,17 @@ def main(path):
         if slot in ("premarket", "midday") and not re.search(r"\d{1,2}:\d{2}\s?(AM|PM)\s?ET", k): err.append("cover kicker needs the snapshot time, e.g. '9:03 AM ET'")
         hl = " ".join(t for t, _ in sl[0].get("headline", []))
         if len(hl.split()) > 10: warn.append(f"cover headline is {len(hl.split())} words (aim for 10 or fewer)")
+    types = [s.get("type") for s in sl]
+    if len(types) > 1 and types[1] not in ("stat", "board", "bignum", "versus"): warn.append("slide 2 should stand alone: use a stat, board, bignum or versus slide")
+    for s_ in sl:
+        if s_.get("type") == "chain" and "reported" not in s_.get("kicker", "").lower(): err.append("chain slide kicker must say 'REPORTED' (interpretation is never stated as fact)")
+    if "?" not in cap: warn.append("caption has no genuine question (comments help reach; never bait with 'comment to win')")
+    memes = [s_ for s_ in sl if s_.get("type") in ("react", "approve", "ev")]
+    if len(memes) > 1 and not str(d.get("format", "")).startswith("meme"): warn.append("more than one meme slide outside a meme-* format")
+    for m_ in memes:
+        for k_ in ("top", "bottom", "no", "yes"):
+            if len(str(m_.get(k_, "")).split()) > 10: warn.append(f"meme text over 10 words ({k_}); keep it punchy")
+    if not d.get("format"): warn.append("no 'format' set in data.json; record it so the rotation can avoid repeats")
     claims = d.get("claims", [])
     if len(claims) < 3: err.append("need at least 3 entries in 'claims'")
     for i, c in enumerate(claims, 1):

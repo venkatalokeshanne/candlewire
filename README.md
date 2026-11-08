@@ -9,3 +9,6 @@ Setup, in order:
 5. To publish an approved post, open that run's session and reply: `publish <date> <slot>`.
 
 Each run writes one small `data.json`; code does layout, checks and rendering.
+
+6. Inspiration inbox: add links or screenshot names of posts you like to `inspiration/notes.md` (what you liked, structure only). Routines read it every run.
+7. In each routine's connectors, keep Stocktwits included (trend scan). Optional later: Alpha Vantage (structured market data), Metricool (analytics).

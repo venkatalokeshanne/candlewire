@@ -1,0 +1,17 @@
+{
+ "premarket": [
+  {"name":"data-versus","pattern":"cover,board,versus,chain,movers,cards,cta","use":"a big 8:30 AM data release or a clear actual-vs-expected"},
+  {"name":"overnight-story","pattern":"cover,stat,chain,board,movers,cards,cta","use":"one overseas or overnight story dominates"},
+  {"name":"meme-open","pattern":"cover,board,react,approve,movers,cards,cta","use":"quiet morning, no big data; lighter tone"},
+  {"name":"earnings-radar","pattern":"cover,board,movers,versus,cards,cta","use":"earnings-heavy morning"}],
+ "midday": [
+  {"name":"chart-of-the-day","pattern":"cover,board,linechart,movers,stat,cta","use":"a timestamped series tells the story"},
+  {"name":"one-number-poster","pattern":"cover,stat,board,chain,movers,cta","use":"one number defines the session"},
+  {"name":"mood-check-meme","pattern":"cover,board,ev,react,movers,cta","use":"choppy or contradictory session"},
+  {"name":"head-to-head","pattern":"cover,board,versus,movers,stat,cta","use":"two assets or sectors diverge"}],
+ "close": [
+  {"name":"scoreboard-classic","pattern":"cover,board,versus,chipbars,movers2,cards,cta","use":"a clear leader/laggard story"},
+  {"name":"meme-recap","pattern":"cover,board,ev,approve,movers2,cards,cta","use":"big swing day or tired narrative"},
+  {"name":"week-in-numbers","pattern":"cover,stat,board,versus,movers2,cards,cta","use":"Fridays: the week in numbers","friday_only":true},
+  {"name":"explainer","pattern":"cover,board,chain,ev,movers2,cards,cta","use":"a move that needs explaining"}]
+}

@@ -32,7 +32,7 @@ def render(spec, out_dir):
     slides = spec["slides"]
     P = E.Post(out_dir, len(slides), tag, tagcol)
     for s in slides:
-        t = s["type"]
+        t = s["type"]; P.nx = s.get("nx")
         if t == "cover":
             P.cover(s["kicker"], s["big"], col(s["bigcol"]), s["bigsub"], parts(s["headline"]), s.get("seed", 11), s.get("gp", 0.3), s.get("bigsize", 230))
         elif t == "board":
@@ -49,6 +49,24 @@ def render(spec, out_dir):
             P.chipbars(s["kicker"], parts(s["parts"]), s["rows"], s["avg"], s["footer"])
         elif t == "linechart":
             P.linechart(s["kicker"], parts(s["parts"]), s["pts"], s["note"], s["footer"])
+        elif t == "stat":
+            P.stat(s["kicker"], s["big"], col(s["bigcol"]), s["label"], s["ctx"], s["footer"], s.get("bigsize", 300))
+        elif t == "versus":
+            P.versus(s["kicker"], parts(s["parts"]), [*s["left"][:3], col(s["left"][3])], [*s["right"][:3], col(s["right"][3])], s.get("win", ""), s["verdict"], s["footer"])
+        elif t == "chain":
+            P.chain(s["kicker"], parts(s["parts"]), [(n[0], n[1], col(n[2])) for n in s["nodes"]], s["footer"])
+        elif t == "react":
+            P.react(s["kicker"], s["top"], s["bottom"], s["mood"], s["footer"])
+        elif t == "approve":
+            P.approve(s["kicker"], s["no"], s["yes"], s["footer"])
+        elif t == "ev":
+            P.ev(s["kicker"], s["left"], s["right"], s["footer"])
+        elif t == "react":
+            P.react(s["kicker"], s["top"], s["bottom"], s["mood"], s["footer"])
+        elif t == "approve":
+            P.approve(s["kicker"], s["no"], s["yes"], s["footer"])
+        elif t == "ev":
+            P.ev(s["kicker"], s["left"], s["right"], s["footer"])
         elif t == "cta":
             P.cta(s["sources"], s.get("extra"))
         else:
