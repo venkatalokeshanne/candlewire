@@ -1,0 +1,290 @@
+{
+ "slot": "premarket",
+ "snapshot": "8:54 AM ET Mon Nov 9 2026",
+ "caption": "S&P 500 futures +0.7% and Nvidia -5.4% before the bell; Friday's Nasdaq rose 1.09%.\n\nYahoo Finance futures quotes: Dow +1.05%, S&P 500 +0.71%, Nasdaq +0.60%. The quote time is not stated. An earlier report (3:42 AM ET) showed smaller gains.\n\nNvidia fell in premarket trading; no confirmed business cause in our sources. Alphabet rose about 3% after unveiling new TPU AI chips.\n\nDo you think the Nasdaq closes higher or lower today? Tell us below.\n\nSend this to a friend who trades. Midday update around 1 PM ET.\n\nPre-market prices are thin and can swing. Educational content only. Not financial advice. Trading involves risk of loss.\n\n#premarket #stockmarket #nasdaq #tradingeducation #nvidia",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "MONDAY, NOV 9, 2026 · 8:54 AM ET · BEFORE THE OPEN",
+   "big": "+0.7%",
+   "bigcol": "green",
+   "bigsub": "S&P 500 FUTURES (YAHOO FINANCE)",
+   "headline": [
+    [
+     "FUTURES UP, ",
+     "white"
+    ],
+    [
+     "NVIDIA",
+     "amber"
+    ],
+    [
+     " DOWN ",
+     "white"
+    ],
+    [
+     "5% BEFORE THE BELL",
+     "white"
+    ]
+   ],
+   "seed": 3,
+   "gp": 0.45,
+   "bigsize": 230
+  },
+  {
+   "type": "board",
+   "kicker": "FUTURES · QUOTE TIME NOT STATED",
+   "footer": "Sources: Yahoo Finance live page, updated 4:57 AM PST (Nov 9)",
+   "parts": [
+    [
+     "BEFORE ",
+     "white"
+    ],
+    [
+     "THE BELL",
+     "amber"
+    ]
+   ],
+   "nx": "FRIDAY'S CLOSE",
+   "rows": [
+    [
+     "DOW FUTURES",
+     "+1.05%",
+     "Futures ticker, Yahoo Finance",
+     "green",
+     0.7
+    ],
+    [
+     "S&P 500 FUTURES",
+     "+0.71%",
+     "Futures ticker, Yahoo Finance",
+     "green",
+     0.5
+    ],
+    [
+     "NASDAQ FUTURES",
+     "+0.60%",
+     "Futures ticker, Yahoo Finance",
+     "green",
+     0.4
+    ]
+   ],
+   "rowh": 170,
+   "valsize": 84
+  },
+  {
+   "type": "board",
+   "kicker": "FRIDAY, NOV 6 · THE CLOSE",
+   "footer": "Sources: JournalArta Nov 7 close report; Yahoo Finance (S&P level)",
+   "parts": [
+    [
+     "FRIDAY'S ",
+     "white"
+    ],
+    [
+     "CLOSE",
+     "amber"
+    ]
+   ],
+   "nx": "NVIDIA'S MOVE",
+   "rows": [
+    [
+     "NASDAQ COMPOSITE",
+     "+1.09%",
+     "Nov 6 close, one source checked",
+     "green",
+     1.0
+    ],
+    [
+     "S&P 500",
+     "+0.32%",
+     "Closed at 7,376.86",
+     "green",
+     0.5
+    ],
+    [
+     "DOW JONES",
+     "−0.46%",
+     "Nov 6 close, one source checked",
+     "red",
+     0.4
+    ]
+   ],
+   "rowh": 150,
+   "valsize": 76
+  },
+  {
+   "type": "stat",
+   "kicker": "NVIDIA · PRE-MARKET",
+   "footer": "Sources: Yahoo Finance live page, Nov 9",
+   "parts": [
+    [
+     "ONE ",
+     "white"
+    ],
+    [
+     "STOCK",
+     "amber"
+    ],
+    [
+     ", ONE NUMBER",
+     "white"
+    ]
+   ],
+   "nx": "PRE-MARKET MOVERS",
+   "big": "−5.4%",
+   "bigcol": "red",
+   "label": "NVDA, QUOTED AT 8:30 AM ET",
+   "ctx": "No confirmed business cause in our sources. Pre-market prices are thin."
+  },
+  {
+   "type": "movers",
+   "kicker": "PRE-MARKET · COMPANY NEWS",
+   "footer": "Pre-market prices are thin and can swing. Sources on the last slide",
+   "parts": [
+    [
+     "PRE-MARKET ",
+     "white"
+    ],
+    [
+     "MOVERS",
+     "amber"
+    ]
+   ],
+   "nx": "WHAT TO WATCH",
+   "rows": [
+    [
+     "NVDA",
+     -5.4,
+     "Quoted at 8:30 AM ET; no confirmed business cause in our sources",
+     "8:30 AM ET"
+    ],
+    [
+     "GOOGL",
+     3.0,
+     "About 3% up after unveiling two new TPU AI chips that challenge Nvidia (Yahoo Finance)",
+     "Premarket"
+    ]
+   ]
+  },
+  {
+   "type": "cards",
+   "kicker": "TODAY",
+   "footer": "Sources: Yahoo Finance live page, Nov 9",
+   "parts": [
+    [
+     "THREE THINGS ",
+     "white"
+    ],
+    [
+     "TO WATCH",
+     "amber"
+    ]
+   ],
+   "cards": [
+    [
+     "1",
+     "Chips",
+     "Nvidia down, Alphabet up on its new TPU chips. Does the split hold at the open?"
+    ],
+    [
+     "2",
+     "Inflation",
+     "Investors are awaiting consumer inflation figures today. Release time and forecasts not confirmed."
+    ],
+    [
+     "3",
+     "Earnings",
+     "Hims & Hers, Rocket Lab and Monday.com report today (Yahoo Finance)."
+    ]
+   ]
+  },
+  {
+   "type": "cta",
+   "sources": [
+    "Yahoo Finance live stock market page, Nov 9 2026",
+    "JournalArta, Nov 9 2026 futures report",
+    "JournalArta Wall Street close report, Nov 7 2026",
+    "Yahoo Finance quote ticker, S&P 500 7,376.86"
+   ],
+   "extra": [
+    "NEXT UPDATE",
+    "MIDDAY · ABOUT 1 PM ET"
+   ]
+  }
+ ],
+ "claims": [
+  {
+   "claim": "Dow futures +1.05%, S&P 500 futures +0.71%, Nasdaq futures +0.60%",
+   "value": "quote time not stated",
+   "source": "Yahoo Finance live stock market page, Nov 9 2026",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-9-dow-sp-500-nasdaq-nvidia-090535419.html",
+   "as_of": "Nov 9 page update 4:57 AM PST",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Earlier futures reading: Dow +0.6%, S&P 500 +0.35%, Nasdaq-100 -0.3%",
+   "value": "3:42 AM ET",
+   "source": "JournalArta, Nov 9 2026 futures report",
+   "url": "https://journalarta.com/en/2026/11/09/stock-market-today-dow-sp-futures-rise-nvidia-slides-november-9-2026/",
+   "as_of": "3:42 AM ET",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Nasdaq Composite Friday +1.09%",
+   "value": "Nov 6 close",
+   "source": "JournalArta Wall Street close report, Nov 7 2026",
+   "url": "https://journalarta.com/en/2026/11/07/wall-street-close-nasdaq-rises-1-09-and-sp-500-gains-0-32-as-dow-slips-0-46/",
+   "as_of": "Nov 6 close",
+   "confidence": "medium"
+  },
+  {
+   "claim": "S&P 500 Friday +0.32%; close 7,376.86",
+   "value": "Nov 6 close",
+   "source": "Yahoo Finance quote ticker, S&P 500 7,376.86",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-9-dow-sp-500-nasdaq-nvidia-090535419.html",
+   "as_of": "Nov 6 close",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Dow Friday -0.46%",
+   "value": "Nov 6 close",
+   "source": "JournalArta Wall Street close report, Nov 7 2026",
+   "url": "https://journalarta.com/en/2026/11/07/wall-street-close-nasdaq-rises-1-09-and-sp-500-gains-0-32-as-dow-slips-0-46/",
+   "as_of": "Nov 6 close",
+   "confidence": "medium"
+  },
+  {
+   "claim": "NVDA premarket -5.43% at 8:30 AM ET",
+   "value": "8:30 AM ET",
+   "source": "Yahoo Finance live stock market page, Nov 9 2026",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-9-dow-sp-500-nasdaq-nvidia-090535419.html",
+   "as_of": "8:30 AM ET",
+   "confidence": "medium"
+  },
+  {
+   "claim": "GOOGL premarket up nearly 3% on TPU chip news",
+   "value": "premarket",
+   "source": "Yahoo Finance live stock market page, Nov 9 2026",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-9-dow-sp-500-nasdaq-nvidia-090535419.html",
+   "as_of": "premarket",
+   "confidence": "medium"
+  },
+  {
+   "claim": "Hims & Hers, Rocket Lab, Monday.com report today",
+   "value": "Nov 9",
+   "source": "Yahoo Finance live stock market page, Nov 9 2026",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-monday-november-9-dow-sp-500-nasdaq-nvidia-090535419.html",
+   "as_of": "Nov 9",
+   "confidence": "medium"
+  }
+ ],
+ "format": "premarket-futures-board",
+ "story": {
+  "q": "Nasdaq closes higher or lower today?",
+  "a": [
+   "Higher",
+   "Lower"
+  ]
+ }
+}
