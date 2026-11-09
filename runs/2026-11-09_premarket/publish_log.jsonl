@@ -1,1 +1,2 @@
-{"date":"2026-11-09","slot":"premarket","mode":"live","status":"failed","error":"HTTP 401 OAuthException code 190 Authentication Error","action":"stopped, no retry, nothing published"}
+{"event": "dry_run", "images": 7, "ts": "2026-11-09T13:55:26+00:00"}
+{"event": "error", "error": "HTTP 401: {\"error\": {\"message\": \"Authentication Error\", \"code\": 190, \"type\": \"OAuthException\", \"fbtrace_id\": \"A2PawHKyCxjMauQiv7tdM1H\"}}", "ts": "2026-11-09T13:55:37+00:00"}
