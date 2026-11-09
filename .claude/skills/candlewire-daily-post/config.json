@@ -2,7 +2,7 @@
  "ig_user_id": "17841457733478739",
  "ig_username": "candlewire_",
  "api_base": "https://graph.facebook.com/v27.0",
- "approval_mode": "manual",
+ "approval_mode": "auto",
  "timezone_reference": "America/New_York",
  "slots_et": {
   "premarket": "run 08:45, publish by 09:10",
