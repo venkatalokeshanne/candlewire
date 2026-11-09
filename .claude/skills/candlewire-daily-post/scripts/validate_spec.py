@@ -10,7 +10,7 @@ def strings(x):
     elif isinstance(x, (list, tuple)):
         for v in x: yield from strings(v)
 def main(path):
-    d = json.load(open(path)); err = []; warn = []
+    d = json.load(open(path, encoding="utf-8")); err = []; warn = []
     slot = d.get("slot")
     if slot not in ("premarket", "midday", "close"): err.append("slot must be premarket, midday or close")
     sl = d.get("slides", [])

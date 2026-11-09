@@ -71,4 +71,4 @@ def compose(c):
     return {"slot": c["slot"], "snapshot": c["snap"], "caption": c["caption"], "slides": sl, "claims": claims, **({"format": c["format"]} if "format" in c else {}), **({"story": c["story"]} if "story" in c else {})}
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("data"); ap.add_argument("--out", required=True); a = ap.parse_args()
-    json.dump(compose(json.load(open(a.data))), open(a.out, "w"), indent=1, ensure_ascii=False); print("spec written to", a.out)
+    json.dump(compose(json.load(open(a.data, encoding="utf-8"))), open(a.out, "w", encoding="utf-8"), indent=1, ensure_ascii=False); print("spec written to", a.out)

@@ -14,7 +14,7 @@ def main():
     ap.add_argument("--out", required=True); ap.add_argument("--wait", type=int, default=120)
     ap.add_argument("--host", default="https://raw.githubusercontent.com", help="override for tests")
     a = ap.parse_args()
-    repo = json.load(open(CFG)).get("media_repo", "")
+    repo = json.load(open(CFG, encoding="utf-8")).get("media_repo", "")
     if not repo or "/" not in repo or repo.startswith("<"):
         sys.exit("Set media_repo in config.json to 'owner/repo' (a public repository)")
     files = sorted(Path(a.run, "jpg").glob("slide_*.jpg"), key=lambda p: int(p.stem.split("_")[1]))

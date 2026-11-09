@@ -29,7 +29,7 @@ class ApiError(Exception):
 
 def log(path, **entry):
     entry["ts"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
-    with open(path, "a") as f:
+    with open(path, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry) + "\n")          # never writes the token
 
 def call(method, url, token, **kw):
@@ -108,10 +108,10 @@ def main():
     if a.upload_dir:
         urls = upload_temp(a.upload_dir)
     elif a.urls:
-        urls = [l.strip() for l in open(a.urls) if l.strip()]
+        urls = [l.strip() for l in open(a.urls, encoding="utf-8") if l.strip()]
     else:
         sys.exit("Give --urls or --upload-dir")
-    caption = open(a.caption).read().strip()
+    caption = open(a.caption, encoding="utf-8").read().strip()
     if not 2 <= len(urls) <= 10:
         sys.exit(f"Carousels need 2 to 10 images, got {len(urls)}")
     if len(caption) > 2200 or caption.count("#") > 30:
@@ -128,7 +128,7 @@ def main():
         log(a.log, event="dry_run", images=len(urls))
         return
 
-    cfg = json.load(open(a.config)) if os.path.exists(a.config) else {}
+    cfg = json.load(open(a.config, encoding="utf-8")) if os.path.exists(a.config) else {}
     token = os.environ.get("IG_ACCESS_TOKEN")
     uid = os.environ.get("IG_USER_ID") or cfg.get("ig_user_id")
     proxy_mode = (not token) and os.environ.get("CLAUDE_CODE_REMOTE") == "true"

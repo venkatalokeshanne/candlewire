@@ -5,14 +5,14 @@ Reads "format" from runs/*_<slot>/data.json. Picks the format unused for longest
 import argparse, datetime, glob, hashlib, json, os
 from pathlib import Path
 from zoneinfo import ZoneInfo
-F = json.load(open(Path(__file__).resolve().parent.parent / "formats.json"))
+F = json.load(open(Path(__file__).resolve().parent.parent / "formats.json", encoding="utf-8"))
 ap = argparse.ArgumentParser(); ap.add_argument("--slot", required=True, choices=list(F)); ap.add_argument("--date"); ap.add_argument("--runs", default="runs")
 a = ap.parse_args()
 today = datetime.date.fromisoformat(a.date) if a.date else datetime.datetime.now(ZoneInfo("America/New_York")).date()
 hist = []
 for p in glob.glob(f"{a.runs}/*_{a.slot}/data.json"):
     try:
-        d = datetime.date.fromisoformat(os.path.basename(os.path.dirname(p)).split("_")[0]); fm = json.load(open(p)).get("format")
+        d = datetime.date.fromisoformat(os.path.basename(os.path.dirname(p)).split("_")[0]); fm = json.load(open(p, encoding="utf-8")).get("format")
         if fm and d < today: hist.append((d, fm))
     except Exception: pass
 hist.sort(reverse=True); recent = [f for _, f in hist[:3]]

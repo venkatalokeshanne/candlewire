@@ -1,7 +1,8 @@
 import random, os
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-W,H=1080,1350
+W,H=1080,int(os.environ.get("CW_H","1350"))  # CW_H=1920 renders 9:16 reel frames
+VS=H/1350  # vertical scale: 1.0 for 4:5 posts, about 1.42 for 9:16 reels
 BG=(6,7,10); TXT=(246,247,250); MUT=(135,142,158)
 AMB=(255,193,59); RED=(255,64,64); GREEN=(40,214,128); CYAN=(70,200,255)
 CARD=(16,18,26); LINE=(38,42,56)
@@ -60,7 +61,7 @@ class Post:
         if footer: d.text((60,H-130),footer,font=inter("Medium",21),fill=MUT)
         y=H-62; d.line([60,y,400,y],fill=TXT,width=2); d.line([W-400,y,W-60,y],fill=TXT,width=2)
         d.text((W//2,y),HANDLE,font=inter("SemiBold",24),fill=TXT,anchor="mm")
-        if self.nx: d.text((W-60,1176),"NEXT: "+self.nx+"  →",font=inter("Bold",24),fill=self.tagcol,anchor="ra")
+        if self.nx: d.text((W-60,H-174),"NEXT: "+self.nx+"  →",font=inter("Bold",24),fill=self.tagcol,anchor="ra")
         self.nx=None
     def fit(self,d,text,font,maxw):
         if d.textlength(text,font=font)<=maxw: return text
@@ -112,7 +113,7 @@ class Post:
         return self.rich(d,60,y0+46,parts,an(size),gap=1.0)
     # ---------- hero
     def hero(self,im,seed,gp):
-        hh=800; lay=Image.new("RGB",(W,hh),BG); d=ImageDraw.Draw(lay); random.seed(seed); rects=[]
+        hh=int(800*VS); lay=Image.new("RGB",(W,hh),BG); d=ImageDraw.Draw(lay); random.seed(seed); rects=[]
         def split(x,y,ww,h2,dep):
             if dep==0 or ww<70 or h2<70: rects.append((x,y,ww,h2)); return
             s=random.uniform(.35,.65)
@@ -127,21 +128,22 @@ class Post:
         lay=lay.filter(ImageFilter.GaussianBlur(1.2)); mask=Image.new("L",(W,hh)); md=ImageDraw.Draw(mask)
         for yy in range(hh): md.line([0,yy,W,yy],fill=int(255*max(0,min(1,(hh-yy)/330))))
         im.paste(lay,(0,0),mask)
-        ov=Image.new("RGBA",(W,hh),(0,0,0,0)); ImageDraw.Draw(ov).ellipse([140,150,W-140,660],fill=(0,0,0,175)); ov=ov.filter(ImageFilter.GaussianBlur(40)); im.paste(ov,(0,0),ov)
+        ov=Image.new("RGBA",(W,hh),(0,0,0,0)); ImageDraw.Draw(ov).ellipse([140,int(150*VS),W-140,int(660*VS)],fill=(0,0,0,175)); ov=ov.filter(ImageFilter.GaussianBlur(40)); im.paste(ov,(0,0),ov)
     # ---------- slide types
     def cover(self,kicker,big,bigcol,bigsub,headline,seed=11,gp=0.3,bigsize=230):
-        im,d=self.new(); self.hero(im,seed,gp); self.glow(im,W//2,470,340,bigcol,50); d=ImageDraw.Draw(im)
-        d.text((W//2,330),kicker,font=inter("Bold",26),fill=MUT,anchor="mm")
-        d.text((W//2,470),big,font=an(self.autosize(d,big,bigsize,W-140)),fill=bigcol,anchor="mm")
-        d.text((W//2,610),bigsub,font=an(50),fill=TXT,anchor="mm")
-        d.text((W-60,742),"ILLUSTRATIVE BACKGROUND",font=inter("Bold",18),fill=MUT,anchor="ra")
-        self.tag(d,W//2,790); self.rich(d,0,880,headline,an(84),gap=1.04,center=True)
-        d.text((W-60,1192),"SWIPE  →",font=inter("Bold",28),fill=TXT,anchor="ra")
+        im,d=self.new(); self.hero(im,seed,gp); self.glow(im,W//2,int(470*VS),340,bigcol,50); d=ImageDraw.Draw(im)
+        d.text((W//2,int(330*VS)),kicker,font=inter("Bold",26),fill=MUT,anchor="mm")
+        d.text((W//2,int(470*VS)),big,font=an(self.autosize(d,big,bigsize,W-140)),fill=bigcol,anchor="mm")
+        d.text((W//2,int(610*VS)),bigsub,font=an(50),fill=TXT,anchor="mm")
+        d.text((W-60,int(742*VS)),"ILLUSTRATIVE BACKGROUND",font=inter("Bold",18),fill=MUT,anchor="ra")
+        self.tag(d,W//2,int(790*VS)); self.rich(d,0,int(880*VS),headline,an(84),gap=1.04,center=True)
+        d.text((W-60,H-158),"SWIPE  →",font=inter("Bold",28),fill=TXT,anchor="ra")
         self.save(im)
     def board(self,kicker,parts,rows,footer,rowh=170,valsize=84):
-        im,d=self.new(); y=self.head(d,kicker,parts)+30
+        im,d=self.new(); y=self.head(d,kicker,parts)+int(30*VS); rowh=int(rowh*VS); gp=int(22*VS)
+        if VS>1: rowh=min(int(rowh*1.25),int((H-y-200-gp*(len(rows)-1))/len(rows)))
         for i,(nm,val,sub,col,ratio) in enumerate(rows):
-            yy=y+i*(rowh+22)
+            yy=y+i*(rowh+gp)
             d.rounded_rectangle([60,yy,W-60,yy+rowh],radius=24,fill=CARD,outline=LINE,width=2)
             if ratio: 
                 dark=tuple(int(c*0.38) for c in col)
@@ -151,26 +153,28 @@ class Post:
             d.text((W-92,yy+rowh//2),val,font=an(valsize),fill=col,anchor="rm")
         self.save(im,footer)
     def cards(self,kicker,parts,cards,footer,cardh=215):
-        im,d=self.new(); y=self.head(d,kicker,parts)+36
+        im,d=self.new(); y=self.head(d,kicker,parts)+36; cardh=int(cardh*VS)
+        if VS>1: cardh=int((H-y-200-int(24*VS)*(len(cards)-1))/len(cards))
         for i,(n,t,s) in enumerate(cards):
-            yy=y+i*(cardh+24)
+            yy=y+i*(cardh+int(24*VS))
             d.rounded_rectangle([60,yy,W-60,yy+cardh],radius=24,fill=CARD,outline=LINE,width=2)
-            d.text((100,yy+cardh//2),n,font=an(100),fill=self.tagcol,anchor="lm")
-            d.text((200,yy+26),self.fit(d,t.upper(),an(38),W-60-24-200),font=an(38),fill=TXT)
-            self.para(d,200,yy+84,s,inter("Medium",27),MUT,W-300,gap=1.28)
+            d.text((100,yy+cardh//2),n,font=an(int(100*VS)),fill=self.tagcol,anchor="lm")
+            d.text((200,yy+26),self.fit(d,t.upper(),an(int(38*VS)),W-60-24-200),font=an(int(38*VS)),fill=TXT)
+            self.para(d,200,yy+int(84*VS),s,inter("Medium",int(27*VS)),MUT,W-300,gap=1.28)
         self.save(im,footer)
     def bignum(self,kicker,parts,big,bigcol,bigsub,bullets,footer):
         im,d=self.new(); y=self.head(d,kicker,parts)+36
-        d.rounded_rectangle([60,y,W-60,y+330],radius=28,fill=CARD,outline=LINE,width=2)
-        d.text((W//2,y+140),big,font=an(210),fill=bigcol,anchor="mm"); d.text((W//2,y+275),bigsub,font=an(40),fill=TXT,anchor="mm")
-        yy=y+370
+        bh=int(330*VS)
+        d.rounded_rectangle([60,y,W-60,y+bh],radius=28,fill=CARD,outline=LINE,width=2)
+        d.text((W//2,y+int(140*VS)),big,font=an(210),fill=bigcol,anchor="mm"); d.text((W//2,y+int(275*VS)),bigsub,font=an(40),fill=TXT,anchor="mm")
+        yy=y+bh+40
         for b in bullets:
             d.ellipse([72,yy+14,86,yy+28],fill=self.tagcol); yy=self.para(d,108,yy,b,inter("SemiBold",31),TXT,W-190,gap=1.3)+16
         self.save(im,footer)
     def movers(self,kicker,parts,rows,footer,rowh=120):
-        im,d=self.new(); y=self.head(d,kicker,parts)+30
+        im,d=self.new(); y=self.head(d,kicker,parts)+int(30*VS); rowh=int(rowh*VS)
         for i,(tk,pct,note,time) in enumerate(rows):
-            yy=y+i*(rowh+12); col=GREEN if pct>0 else RED
+            yy=y+i*(rowh+int(12*VS)); col=GREEN if pct>0 else RED
             d.rounded_rectangle([60,yy,W-60,yy+rowh],radius=22,fill=CARD,outline=LINE,width=2)
             d.rectangle([60,yy+18,70,yy+rowh-18],fill=col)
             d.text((96,yy+16),tk,font=an(46),fill=TXT)
@@ -183,27 +187,27 @@ class Post:
         for ci,(lab,col,lst) in enumerate([("GAINERS",GREEN,gain),("LOSERS",RED,lose)]):
             x=60+ci*(cw+30); d.text((x,y),lab,font=an(40),fill=col)
             for i,(tk,name,pct) in enumerate(lst):
-                yy=y+64+i*150
-                d.rounded_rectangle([x,yy,x+cw,yy+132],radius=22,fill=CARD,outline=LINE,width=2); d.rectangle([x,yy+18,x+9,yy+114],fill=col)
+                yy=y+int(64*VS)+i*int(150*VS)
+                d.rounded_rectangle([x,yy,x+cw,yy+int(132*VS)],radius=22,fill=CARD,outline=LINE,width=2); d.rectangle([x,yy+18,x+9,yy+int(114*VS)],fill=col)
                 d.text((x+34,yy+14),tk,font=an(44),fill=TXT); d.text((x+34,yy+76),self.fit(d,name,inter("Medium",22),cw-34-24-165),font=inter("Medium",22),fill=MUT)
                 d.text((x+cw-24,yy+66),("+" if pct>0 else "−")+f"{abs(pct):.2f}%",font=an(46),fill=col,anchor="rm")
         self.save(im,footer)
     def chipbars(self,kicker,parts,rows,avg,footer):
         im,d=self.new(); y=self.head(d,kicker,parts)+20
-        rh=80
+        rh=int(80*VS)
         for i,(tk,gain,share) in enumerate(rows):
-            yy=y+i*(rh+10)
+            yy=y+i*(rh+int(10*VS))
             d.rounded_rectangle([60,yy,W-60,yy+rh],radius=16,fill=CARD)
             d.rounded_rectangle([60,yy,60+int((W-120)*share/70),yy+rh],radius=16,fill=(15,92,58))
             d.text((86,yy+rh//2),tk,font=an(38),fill=TXT,anchor="lm")
             d.text((380,yy+rh//2),f"+{gain:.2f}% Fri",font=inter("SemiBold",25),fill=(215,218,226),anchor="lm")
             d.text((W-86,yy+rh//2),f"{share}%",font=an(48),fill=GREEN,anchor="rm")
-        yy=y+len(rows)*(rh+10)+10
-        d.rounded_rectangle([60,yy,W-60,yy+110],radius=22,fill=AMB)
-        d.text((W//2,yy+55),f"AVERAGE: {avg}% OF THURSDAY'S LOSS WON BACK",font=an(40),fill=BG,anchor="mm")
+        yy=y+len(rows)*(rh+int(10*VS))+int(10*VS)
+        d.rounded_rectangle([60,yy,W-60,yy+int(110*VS)],radius=22,fill=AMB)
+        d.text((W//2,yy+int(55*VS)),f"AVERAGE: {avg}% OF THURSDAY'S LOSS WON BACK",font=an(40),fill=BG,anchor="mm")
         self.save(im,footer)
     def linechart(self,kicker,parts,pts,note,footer):
-        im,d=self.new(CYAN); y=self.head(d,kicker,parts)+30; ch=560
+        im,d=self.new(CYAN); y=self.head(d,kicker,parts)+30; ch=int(560*VS)
         d.rounded_rectangle([60,y,W-60,y+ch],radius=28,fill=CARD,outline=LINE,width=2)
         x0,x1=130,W-110; y0,y1=y+90,y+ch-90
         for g in (0,25,50):
@@ -230,13 +234,13 @@ class Post:
         d.text((cx,y),line,font=font,fill=fill,anchor="ma"); return y+int(font.size*gap)
     def stat(self,kicker,big,bigcol,label,ctx,footer,bigsize=300):
         im,d=self.new(bigcol); d.text((60,150),kicker,font=inter("Bold",25),fill=self.tagcol)
-        self.glow(im,W//2,520,380,bigcol,60); d=ImageDraw.Draw(im)
-        d.text((W//2,520),big,font=an(self.autosize(d,big,bigsize,W-140)),fill=bigcol,anchor="mm")
-        y=self.rich(d,0,730,[(label,TXT)],an(70),gap=1.04,center=True)+24
+        self.glow(im,W//2,int(520*VS),380,bigcol,60); d=ImageDraw.Draw(im)
+        d.text((W//2,int(520*VS)),big,font=an(self.autosize(d,big,bigsize,W-140)),fill=bigcol,anchor="mm")
+        y=self.rich(d,0,int(730*VS),[(label,TXT)],an(70),gap=1.04,center=True)+24
         self.cpara(d,y,ctx,inter("Medium",32),(200,204,214),W-200)
         self.save(im,footer)
     def versus(self,kicker,parts,left,right,win,verdict,footer):
-        im,d=self.new(); y=self.head(d,kicker,parts)+30; ph=560; pw=(W-150)//2
+        im,d=self.new(); y=self.head(d,kicker,parts)+30; ph=int(560*VS); pw=(W-150)//2
         wcol=AMB
         for i,(side,x) in enumerate(((left,60),(right,60+pw+30))):
             label,big,sub,colr=side; isw=(win=="LR"[i]); wcol=colr if isw else wcol
@@ -250,8 +254,8 @@ class Post:
         d.text((W//2,vy+56),self.fit(d,verdict.upper(),an(44),W-170),font=an(44),fill=BG,anchor="mm")
         self.save(im,footer)
     def chain(self,kicker,parts,nodes,footer):
-        im,d=self.new(); y=self.head(d,kicker,parts)+24; n=len(nodes); gap=46
-        nh=min(170,int((1150-y-gap*(n-1))/n)); tx=190
+        im,d=self.new(); y=self.head(d,kicker,parts)+24; n=len(nodes); gap=int(46*VS)
+        nh=min(int(170*VS),int((H-200-y-gap*(n-1))/n)); tx=190
         for i,(title,text,colr) in enumerate(nodes):
             yy=y+i*(nh+gap)
             d.rounded_rectangle([60,yy,W-60,yy+nh],radius=26,fill=CARD,outline=LINE,width=2); d.rectangle([60,yy+18,70,yy+nh-18],fill=colr)
@@ -341,30 +345,30 @@ class Post:
     def react(self,kicker,top,bottom,mood,footer):
         colr={"happy":GREEN,"smug":GREEN,"panic":RED,"sad":RED,"shocked":AMB}.get(mood,AMB)
         im,d=self.new(colr); d.text((60,150),kicker,font=inter("Bold",25),fill=self.tagcol)
-        self.rich(d,0,196,[(top,TXT)],an(86),gap=1.02,center=True)
-        self.glow(im,W//2,735,330,colr,55); self.mascot(im,W//2,735,640,mood); d=ImageDraw.Draw(im)
-        self.rich(d,0,1030,[(bottom,colr)],an(72),gap=1.02,center=True)
+        self.rich(d,0,int(196*VS),[(top,TXT)],an(86),gap=1.02,center=True)
+        cy=int(735*VS); self.glow(im,W//2,cy,int(330*VS),colr,55); self.mascot(im,W//2,cy,int(640*VS),mood); d=ImageDraw.Draw(im)
+        self.rich(d,0,int(1030*VS),[(bottom,colr)],an(72),gap=1.02,center=True)
         self.save(im,footer)
     def approve(self,kicker,no,yes,footer):
         im,d=self.new(); d.text((60,150),kicker,font=inter("Bold",25),fill=self.tagcol)
         for i,(txt,mood,colr,lab) in enumerate(((no,"sad",RED,"NOPE"),(yes,"smug",GREEN,"YES"))):
-            yy=210+i*480
-            d.rounded_rectangle([60,yy,W-60,yy+440],radius=30,fill=CARD,outline=colr,width=4)
-            d.rounded_rectangle([60,yy,470,yy+440],radius=30,fill=tuple(int(c*0.30) for c in colr))
-            self.mascot(im,265,yy+225,400,mood); d=ImageDraw.Draw(im)
+            yy=int(210*VS)+i*int(480*VS); rh=int(440*VS)
+            d.rounded_rectangle([60,yy,W-60,yy+rh],radius=30,fill=CARD,outline=colr,width=4)
+            d.rounded_rectangle([60,yy,470,yy+rh],radius=30,fill=tuple(int(c*0.30) for c in colr))
+            self.mascot(im,265,yy+int(225*VS),int(400*VS),mood); d=ImageDraw.Draw(im)
             d.text((96,yy+22),lab,font=an(46),fill=colr)
             rows=self.rows_of(d,[(txt,TXT)],an(62),W-60-30-500); hh=len(rows)*int(62*1.04)
-            self.rich(d,500,yy+220-hh//2,[(txt,TXT)],an(62),gap=1.04,maxw=W-60-30-500)
+            self.rich(d,500,yy+int(220*VS)-hh//2,[(txt,TXT)],an(62),gap=1.04,maxw=W-60-30-500)
         self.save(im,footer)
     def ev(self,kicker,left,right,footer):
-        im,d=self.new(); d.text((60,150),kicker,font=inter("Bold",25),fill=self.tagcol); y=210; ph=760; pw=(W-150)//2
+        im,d=self.new(); d.text((60,150),kicker,font=inter("Bold",25),fill=self.tagcol); y=int(210*VS); ph=int(760*VS); pw=(W-150)//2
         for i,((label,text,mood),x) in enumerate(((left,60),(right,60+pw+30))):
             colr={"happy":GREEN,"smug":GREEN,"panic":RED,"sad":RED,"shocked":AMB}.get(mood,AMB)
             d.rounded_rectangle([60 if i==0 else x,y,(60 if i==0 else x)+pw,y+ph],radius=32,fill=CARD,outline=colr,width=4)
             d.text((x+pw//2,y+58),self.fit(d,label.upper(),an(42),pw-40),font=an(42),fill=MUT,anchor="mm")
-            self.mascot(im,x+pw//2,y+330,430,mood); d=ImageDraw.Draw(im)
+            self.mascot(im,x+pw//2,y+int(330*VS),int(430*VS),mood); d=ImageDraw.Draw(im)
             rows=self.rows_of(d,[(text.upper(),colr)],an(54),pw-60); hh=len(rows)*int(54*1.04)
-            self.rich(d,x+pw//2,y+600+(120-hh)//2,[(text.upper(),colr)],an(54),gap=1.04,center=False,maxw=pw-60) if False else self.cpara_big(d,y+600+(130-hh)//2,text.upper(),an(54),colr,pw-60,x+pw//2)
+            self.rich(d,x+pw//2,y+600+(120-hh)//2,[(text.upper(),colr)],an(54),gap=1.04,center=False,maxw=pw-60) if False else self.cpara_big(d,y+int(600*VS)+(int(130*VS)-hh)//2,text.upper(),an(54),colr,pw-60,x+pw//2)
         self.save(im,footer)
     def cpara_big(self,d,y,text,font,fill,maxw,cx):
         words=text.split(); line=""
@@ -373,15 +377,15 @@ class Post:
             else: d.text((cx,y),line,font=font,fill=fill,anchor="ma"); y+=int(font.size*1.04); line=w
         d.text((cx,y),line,font=font,fill=fill,anchor="ma")
     def cta(self,sources,extra,disclaimer="Educational content only. Not financial advice. Trading involves risk of loss."):
-        im,d=self.new(); y=self.rich(d,60,150,[("SEND THIS ",self.tagcol),("TO A FRIEND WHO TRADES.",TXT)],an(112),gap=1.0)+34
+        im,d=self.new(); y=self.rich(d,60,150,[("SEND THIS ",self.tagcol),("TO A FRIEND WHO TRADES.",TXT)],an(int(112*VS)),gap=1.0)+int(34*VS)
         if extra:
             d.rounded_rectangle([60,y,W-60,y+150],radius=24,fill=CARD,outline=LINE,width=2)
             d.text((92,y+22),extra[0],font=an(34),fill=MUT); d.text((92,y+78),extra[1],font=an(46),fill=self.tagcol); y+=180
-        h=70+len(sources)*50+20
+        per=50 if VS==1 else int(64*VS); h=70+len(sources)*per+int(20*VS)
         d.rounded_rectangle([60,y,W-60,y+h],radius=26,fill=CARD,outline=LINE,width=2)
         d.text((92,y+22),"SOURCES",font=an(34),fill=MUT); yy=y+78
         for s in sources:
-            d.ellipse([94,yy+12,106,yy+24],fill=self.tagcol); yy=self.para(d,124,yy,s,inter("Medium",24),TXT,W-220,gap=1.22)+6
+            d.ellipse([94,yy+12,106,yy+24],fill=self.tagcol); yy=self.para(d,124,yy,s,inter("Medium",int(24*VS)),TXT,W-220,gap=1.22)+int(6*VS)
         d.text((60,y+h+26),"Figures can differ slightly between outlets. Times are US Eastern.",font=inter("Medium",23),fill=MUT)
         d.text((60,y+h+60),disclaimer,font=inter("SemiBold",23),fill=MUT)
         self.save(im)
