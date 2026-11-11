@@ -1,0 +1,191 @@
+{
+ "slot": "close",
+ "snapshot": "4:20 PM ET Wed Nov 11 2026",
+ "caption": "Close: Nasdaq +1.55%, S&P 500 +1.27%, Dow +0.45% as CoreWeave's results lifted AI and chip stocks (reported).\n\nThe rebound came after Tuesday's sell-off, which followed a hotter-than-expected inflation report (reported). Closing levels are from Businessupturn.\n\nSwipe for the scoreboard and what drove the rebound.\n\nDid you expect the AI rebound to hold? Tell us below.\n\nSend this to a friend who trades. Pre-market update tomorrow.\n\nSources on the last slide. Educational content only. Not financial advice. Trading involves risk of loss.\n\n#marketclose #stockmarket #nasdaq #sp500 #tradingeducation",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "WEDNESDAY, NOV 11, 2026 · THE CLOSE",
+   "big": "+1.55%",
+   "bigcol": "green",
+   "bigsub": "NASDAQ COMPOSITE",
+   "headline": [
+    [
+     "AI STOCKS LEAD A ",
+     "white"
+    ],
+    [
+     "REBOUND",
+     "amber"
+    ],
+    [
+     " AFTER TUESDAY",
+     "white"
+    ]
+   ],
+   "seed": 3,
+   "gp": 0.5,
+   "bigsize": 230
+  },
+  {
+   "type": "board",
+   "kicker": "WEDNESDAY, NOV 11 · 4:00 PM ET",
+   "footer": "Sources: Businessupturn (levels); Yahoo, TheStreet (intraday)",
+   "parts": [
+    [
+     "THE CLOSING",
+     "white"
+    ],
+    [
+     " SCOREBOARD",
+     "amber"
+    ]
+   ],
+   "nx": "WHY THE CHIPS BOUNCED",
+   "rows": [
+    [
+     "NASDAQ COMPOSITE",
+     "+1.55%",
+     "Closed at 25,454.08",
+     "green",
+     1.0
+    ],
+    [
+     "S&P 500",
+     "+1.27%",
+     "Closed at 7,616.77",
+     "green",
+     0.82
+    ],
+    [
+     "DOW JONES",
+     "+0.45%",
+     "Closed at 52,465.49",
+     "green",
+     0.29
+    ]
+   ],
+   "rowh": 170,
+   "valsize": 84
+  },
+  {
+   "type": "chain",
+   "kicker": "REPORTED EXPLANATIONS · NOT CONFIRMED CAUSES",
+   "footer": "Sources: TheStreet live blog, Yahoo Finance live blog, Businessupturn",
+   "parts": [
+    [
+     "HOW THE REBOUND ",
+     "white"
+    ],
+    [
+     "BUILT",
+     "amber"
+    ]
+   ],
+   "nx": "WHAT TO WATCH",
+   "nodes": [
+    [
+     "TUESDAY SELL-OFF",
+     "Chip and AI stocks fell after a hotter-than-expected inflation report (reported).",
+     "red"
+    ],
+    [
+     "CORE WEAVE RESULTS",
+     "CoreWeave beat Q3 estimates and raised its full-year outlook (reported).",
+     "amber"
+    ],
+    [
+     "AI INFRA RALLY",
+     "Nebius, Bloom Energy and chip names rose with CoreWeave (intraday reports).",
+     "amber"
+    ],
+    [
+     "NASDAQ CLOSES UP",
+     "Nasdaq Composite +1.55% at the close.",
+     "green"
+    ]
+   ]
+  },
+  {
+   "type": "cards",
+   "kicker": "WHAT TO WATCH",
+   "footer": "Sources: Company reports and press coverage",
+   "parts": [
+    [
+     "NEXT ",
+     "white"
+    ],
+    [
+     "UP",
+     "amber"
+    ]
+   ],
+   "cards": [
+    [
+     "1",
+     "CoreWeave guidance",
+     "Raised full-year revenue outlook after the Q3 beat (reported)."
+    ],
+    [
+     "2",
+     "Chip sentiment",
+     "Nvidia rose after two days of losses; it remains down about 14% in November (intraday reports)."
+    ]
+   ]
+  },
+  {
+   "type": "cta",
+   "sources": [
+    "Businessupturn",
+    "Yahoo Finance live blog",
+    "TheStreet live blog"
+   ],
+   "extra": [
+    "NEXT UPDATE",
+    "PRE-MARKET · THURSDAY, NOV 12"
+   ]
+  }
+ ],
+ "claims": [
+  {
+   "claim": "Nasdaq 25,454.08 +1.55%; S&P 500 7,616.77 +1.27%; Dow 52,465.49 +0.45%",
+   "value": "close",
+   "source": "Businessupturn",
+   "url": "https://businessupturn.com/usa/money/us-markets/us-stocks-rise-broadly-on-wednesday-as-nasdaq-leads-gains/",
+   "as_of": "4:00 PM ET",
+   "confidence": "medium (single source; second close source not found)"
+  },
+  {
+   "claim": "CoreWeave beat Q3 estimates and raised its full-year outlook",
+   "value": "reported",
+   "source": "Yahoo Finance live blog",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-11-dow-sp-500-nasdaq-nvidia-treasurys-veterans-day-140638547.html",
+   "as_of": "midday-close",
+   "confidence": "medium (press reports)"
+  },
+  {
+   "claim": "Tuesday sell-off followed a hotter-than-expected inflation report",
+   "value": "reported",
+   "source": "TheStreet live blog",
+   "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-11-2026",
+   "as_of": "Tue Nov 10",
+   "confidence": "medium (press reports)"
+  },
+  {
+   "claim": "Nvidia +3.47% and about -14% in November (intraday)",
+   "value": "intraday",
+   "source": "Yahoo Finance live blog",
+   "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-11-dow-sp-500-nasdaq-nvidia-treasurys-veterans-day-140638547.html",
+   "as_of": "3:24 PM ET",
+   "confidence": "low (intraday, not close)"
+  }
+ ],
+ "format": "explainer",
+ "story": {
+  "q": "Where do stocks open Thursday?",
+  "a": [
+   "Higher",
+   "Lower"
+  ]
+ }
+}
